@@ -16,6 +16,7 @@ public class BatallaDigital {
 	}
 
 
+
 	private void generarEnemigo() {
 		String[] nombres = {"Agumon", "Gabumon", "Patamon"};
 		Random rand = new Random();
@@ -26,48 +27,53 @@ public class BatallaDigital {
 
 
 
+
 	public void elige() {
-		Scanner scanner = new Scanner(System.in);
-		System.out.println("Elige un Digimon de tu equipo para utilizar:");
-		for (int i = 0; i < domador.getEquipo().size(); i++) {
-			System.out.println((i + 1) + ". " + domador.getEquipo().get(i));
+		try (Scanner sn = new Scanner(System.in)) {
+			System.out.println("Elige un Digimon de tu equipo para utilizar:");
+			for (int i = 0; i < domador.getEquipo().size(); i++) {
+				System.out.println((i + 1) + ". " + domador.getEquipo().get(i));
+			}
+			int opcion = sn.nextInt();
+			pelea(domador.getEquipo().get(opcion - 1));
 		}
-		int opcion = scanner.nextInt();
-		pelea(domador.getEquipo().get(opcion - 1));
 	}
 
 
 
 	public void pelea(Digimon digimon) {
-		Scanner scanner = new Scanner(System.in);
-		while (enemigo.getSalud() > 0 && digimon.getSalud() > 0) {
-			System.out.println("Elige tu acción:");
-			System.out.println("1. Ataque 1");
-			System.out.println("2. Ataque 2");
-			System.out.println("3. Capturar");
+		try (Scanner sn = new Scanner(System.in)) {
+			while (enemigo.getSalud() > 0 && digimon.getSalud() > 0) {
+				System.out.println("Elige tu acción:");
+				System.out.println("1. Ataque 1");
+				System.out.println("2. Ataque 2");
+				System.out.println("3. Capturar");
 
-			int accion = scanner.nextInt();
+				int accion = sn.nextInt();
 
-			switch (accion) {
-			case 1:
-				digimon.ataque1(enemigo);
-				break;
-			case 2:
-				digimon.ataque2(enemigo);
-				break;
-			case 3:
-				domador.capturar(enemigo);
-				return;
-			default:
-				System.out.println("Opción no válida");
+				switch (accion) {
+				case 1:
+					digimon.ataque1(enemigo);
+					break;
+				case 2:
+					digimon.ataque2(enemigo);
+					break;
+				case 3:
+					domador.capturar(enemigo);
+					return;
+				default:
+					System.out.println("Opción no válida");
+				}
+
+				System.out.println("Estado enemigo: " + enemigo);
+				System.out.println("Estado tu Digimon: " + digimon);
 			}
-
-			System.out.println("Estado enemigo: " + enemigo);
-			System.out.println("Estado tu Digimon: " + digimon);
 		}
-
 		if (enemigo.getSalud() <= 0) {
 			System.out.println("Has derrotado al enemigo!");
 		}
 	}
+
+
+
 }
