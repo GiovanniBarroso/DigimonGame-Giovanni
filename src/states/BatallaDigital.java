@@ -8,14 +8,14 @@ public class BatallaDigital {
 	private Domador domador;
 	private Digimon enemigo;
 
-	
-	
+
+
 	public BatallaDigital(Domador domador) {
 		this.domador = domador;
 		generarEnemigo();
 	}
 
-	
+
 	private void generarEnemigo() {
 		String[] nombres = {"Agumon", "Gabumon", "Patamon"};
 		Random rand = new Random();
@@ -24,11 +24,11 @@ public class BatallaDigital {
 		System.out.println("Enemigo generado: " + enemigo);
 	}
 
-	
-	
+
+
 	public void elige() {
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Elige un Digimon de tu equipo:");
+		System.out.println("Elige un Digimon de tu equipo para utilizar:");
 		for (int i = 0; i < domador.getEquipo().size(); i++) {
 			System.out.println((i + 1) + ". " + domador.getEquipo().get(i));
 		}
@@ -36,8 +36,8 @@ public class BatallaDigital {
 		pelea(domador.getEquipo().get(opcion - 1));
 	}
 
-	
-	
+
+
 	public void pelea(Digimon digimon) {
 		Scanner scanner = new Scanner(System.in);
 		while (enemigo.getSalud() > 0 && digimon.getSalud() > 0) {
