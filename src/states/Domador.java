@@ -20,19 +20,40 @@ public class Domador {
 		equipo.add(digimon);
 	}
 
-	public void capturar(Digimon digimon) {
+	public boolean capturar(Digimon digimon) {
 		if (digimon.getSalud() <= 20) {
 			if (equipo.size() < 3) {
+				for (Digimon d : equipo) {
+					if (d.getNombre().equals(digimon.getNombre())) {
+						System.out.println("Ya tienes a " + digimon.getNombre() + " en tu equipo.");
+						return false;
+					}
+				}
 				equipo.add(digimon);
 				System.out.println("¡Enhorabuena!," + digimon.getNombre() + " se ha unido a su equipo.");
-			} else {
+				return true;
+			} else if (equipo.size() == 3) {
 				System.out.println("¡Vaya!, el equipo ya está completo (3 DIGIMON).");
 			}
 		} else {
 			System.out.println("Lo siento, " + digimon.getNombre() + " no se puede unir, su salud es mayor a 20 HP");
 		}
+		return false;
 	}
 
+	public boolean todosDiferentes() {
+		if (equipo.size() != 3) {
+			return false;
+		}
+		List<String> nombres = new ArrayList<>();
+		for (Digimon d : equipo) {
+			if (nombres.contains(d.getNombre())) {
+				return false;
+			}
+			nombres.add(d.getNombre());
+		}
+		return true;
+	}
 
 	public List<Digimon> getEquipo() {
 		return equipo;
