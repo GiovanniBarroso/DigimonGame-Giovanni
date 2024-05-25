@@ -49,7 +49,6 @@ public class Digimon {
 	}
 
 	public void ataque1(Digimon enemigo) {
-
 		if (dp1 > 0) {
 			enemigo.salud -= this.ataque;
 			this.dp1--;
@@ -57,13 +56,11 @@ public class Digimon {
 	} 
 
 	public void ataque2(Digimon enemigo) {
-
 		if (dp2 > 1) {
 			enemigo.salud -= 2 * this.ataque;
 			this.dp2 -= 2;
 		}
 	} 
-
 
 	@Override
 	public String toString() {
