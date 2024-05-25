@@ -3,6 +3,7 @@ package states;
 import java.util.Random;
 
 public class Digimon {
+	
 	private String nombre;
 	private int nivel;
 	private int ataque;
@@ -10,6 +11,7 @@ public class Digimon {
 	private int dp1;
 	private int dp2;
 
+	
 	public Digimon(String nombre) {
 		this.nombre = nombre;
 		Random rand = new Random();
@@ -20,34 +22,42 @@ public class Digimon {
 		this.dp2 = 10;
 	}
 
+	
 	public String getNombre() {
 		return nombre;
 	}
 
+	
 	public int getNivel() {
 		return nivel;
 	}
 
+	
 	public int getAtaque() {
 		return ataque;
 	}
 
+	
 	public int getSalud() {
 		return salud;
 	}
 
+	
 	public void setSalud(int salud) {
 		this.salud = salud;
 	}
 
+	
 	public int getDp1() {
 		return dp1;
 	}
 
+	
 	public int getDp2() {
 		return dp2;
 	}
 
+	
 	public void ataque1(Digimon enemigo) {
 		if (dp1 > 0) {
 			enemigo.salud -= this.ataque;
@@ -55,6 +65,8 @@ public class Digimon {
 		}
 	} 
 
+	
+	
 	public void ataque2(Digimon enemigo) {
 		if (dp2 > 1) {
 			enemigo.salud -= 2 * this.ataque;
@@ -62,6 +74,8 @@ public class Digimon {
 		}
 	} 
 
+	
+	
 	@Override
 	public String toString() {
 		return "\nDigimon:\n" +
@@ -69,7 +83,7 @@ public class Digimon {
 				"Nivel: " + nivel + '\n' +
 				"Ataque: " + ataque + '\n' +
 				"Salud: " + salud + '\n' +
-				"Ataque1: " + dp1 + '\n' +
-				"Ataque2: " + dp2 + '\n';
+				"DP 1: " + dp1 + '\n' +
+				"DP 2: " + dp2 + '\n';
 	}
 }

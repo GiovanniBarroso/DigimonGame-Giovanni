@@ -3,48 +3,49 @@ package states;
 import java.util.List;
 
 public class TablaEquipo {
+	public static String format(List<Digimon> equipo) {
 
-    public static String format(List<Digimon> equipo) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\nEquipo de Digimon:\n");
+		StringBuilder cadenaConstruida = new StringBuilder();
+		String[][] tabla = new String[6][3];
 
-        // Encabezado de la tabla
-        sb.append("+------------------+------------------+------------------+\n");
-        sb.append("|     Digimon 1    |     Digimon 2    |     Digimon 3    |\n");
-        sb.append("+------------------+------------------+------------------+\n");
 
-        // Fila de nombres
-        sb.append(crearFila(equipo, "Nombre", d -> d.getNombre()));
 
-        // Fila de niveles
-        sb.append(crearFila(equipo, "Nivel", d -> String.valueOf(d.getNivel())));
+		// Rellenar la tabla con datos de los Digimon
+		for (int i = 0; i < 3; i++) {
+			if (i < equipo.size()) {
+				Digimon digimon = equipo.get(i);
+				tabla[0][i] = digimon.getNombre();
+				tabla[1][i] = "Nivel: " + digimon.getNivel();
+				tabla[2][i] = "Ataque: " + digimon.getAtaque();
+				tabla[3][i] = "Salud: " + digimon.getSalud();
+				tabla[4][i] = "DP 1: " + digimon.getDp1();
+				tabla[5][i] = "DP 2: " + digimon.getDp2();
+			} else {
+				tabla[0][i] = "";
+				tabla[1][i] = "";
+				tabla[2][i] = "";
+				tabla[3][i] = "";
+				tabla[4][i] = "";
+				tabla[5][i] = "";
+			}
+		}
 
-        // Fila de ataques
-        sb.append(crearFila(equipo, "Ataque", d -> String.valueOf(d.getAtaque())));
 
-        // Fila de salud
-        sb.append(crearFila(equipo, "Salud", d -> String.valueOf(d.getSalud())));
+		cadenaConstruida.append("\nEquipo de Digimon:\n");
+		cadenaConstruida.append("+------------------+------------------+------------------+\n");
+		cadenaConstruida.append("|     Digimon 1    |     Digimon 2    |     Digimon 3    |\n");
+		cadenaConstruida.append("+------------------+------------------+------------------+\n");
 
-        return sb.toString();
-    }
 
-    private static String crearFila(List<Digimon> equipo, String atributo, AtributoDigimon extractor) {
-        StringBuilder fila = new StringBuilder();
-        for (int i = 0; i < 3; i++) {
-            if (i < equipo.size()) {
-                Digimon digimon = equipo.get(i);
-                fila.append(String.format("| %-16s ", atributo + ": " + extractor.extraer(digimon)));
-            } else {
-                fila.append("|                  ");
-            }
-        }
-        fila.append("|\n");
-        fila.append("+------------------+------------------+------------------+\n");
-        return fila.toString();
-    }
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 3; j++) {
+				cadenaConstruida.append(String.format("| %-16s ", tabla[i][j]));
+			}
 
-    @FunctionalInterface
-    private interface AtributoDigimon {
-        String extraer(Digimon digimon);
-    }
+			cadenaConstruida.append("|\n");
+			cadenaConstruida.append("+------------------+------------------+------------------+\n");
+		}
+
+		return cadenaConstruida.toString();
+	}
 }
