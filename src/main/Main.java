@@ -2,9 +2,21 @@ package main;
 
 import states.Menu;
 
+/**
+ * Clase main del juego Digimon.
+ * 
+ * Autor: Giovanni
+ */
 public class Main {
-	public static void main(String[] args) {
-		Menu menu = new Menu();
-		menu.iniciar();
-	}
+
+    /**
+     * Método principal que inicia el juego Digimon.
+     *
+     * @param args Los argumentos de la línea de comandos.
+     */
+    public static void main(String[] args) {
+        // Código para iniciar el juego
+        Menu menu = new Menu();
+        menu.iniciar();
+    }
 }
