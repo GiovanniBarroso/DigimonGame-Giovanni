@@ -12,15 +12,18 @@ public class Domador {
 		agregarDigimonAleatorio();
 	}
 
+
 	private void agregarDigimonAleatorio() {
 		String[] nombres = {"Agumon", "Gabumon", "Patamon"};
 		Random rand = new Random();
 		String nombreDigimon = nombres[rand.nextInt(nombres.length)];
 		Digimon digimon = new Digimon(nombreDigimon);
 		equipo.add(digimon);
+
 	}
 
 	public boolean capturar(Digimon digimon) {
+
 		if (digimon.getSalud() <= 20) {
 			if (equipo.size() < 3) {
 				for (Digimon d : equipo) {
@@ -32,12 +35,11 @@ public class Domador {
 				equipo.add(digimon);
 				System.out.println("¡Enhorabuena!," + digimon.getNombre() + " se ha unido a su equipo.");
 				return true;
-			} else if (equipo.size() == 3) {
-				System.out.println("¡Vaya!, el equipo ya está completo (3 DIGIMON).");
-			}
+			} 
 		} else {
 			System.out.println("Lo siento, " + digimon.getNombre() + " no se puede unir, su salud es mayor a 20 HP");
 		}
+
 		return false;
 	}
 
