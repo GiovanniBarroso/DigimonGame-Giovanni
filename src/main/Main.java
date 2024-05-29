@@ -5,7 +5,7 @@ import states.Menu;
 /**
  * Clase main del juego Digimon.
  * 
- * Autor: Giovanni
+ * @author Giovanni
  */
 public class Main {
 
